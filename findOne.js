@@ -3,60 +3,7 @@ const {findByState} = require('./findByState');
 let fine = 1;
 // let output = '';
 
-//*************************** 
-function count(colour, position)
-{
-    let value = 0;
-    for (let i = 0; i < 24; i++)
-        if (position[i] == colour)
-            value++;
-    return value;
-}
 
-function isValid(position) {
-
-    if (count('Y', position) != 4 || count('O', position) != 4 || count('B', position) != 4 || count('R', position) != 4 || count('G', position) != 4 || count('W', position) != 4)
-        return false;
-
-    let pair = [
-        [position[0], position[4], position[11]], 
-        [position[1], position[10], position[9]], 
-        [position[2], position[6], position[5]], 
-        [position[3], position[8], position[7]], 
-
-        [position[20], position[13], position[14]], 
-        [position[21], position[15], position[16]], 
-        [position[22], position[17], position[18]],
-        [position[23], position[19], position[12]]
-    ];
-
-    let sumy = 0;
-    let sumb = 0;
-    let sumr = 0;
-    for (let i = 0; i < 8; i++)
-    {
-        if (pair[i][1] == 'W' || pair[i][1] == 'Y')
-            sumy++;
-        else if (pair[i][2] == 'W' || pair[i][2] == 'Y')
-            sumy += 2;
-
-        if (pair[i][1] == 'B' || pair[i][1] == 'G')
-            sumb++;
-        else if (pair[i][2] == 'B' || pair[i][2] == 'G')
-            sumb += 2;
-
-        if (pair[i][1] == 'R' || pair[i][1] == 'O')
-            sumr++;
-        else if (pair[i][2] == 'R' || pair[i][2] == 'O')
-            sumr += 2;
-    }
-
-    if (sumy % 3 != 0 || sumb % 3 != 0 || sumr % 3 != 0)
-        return false;
-
-    return true;
-}
-//*************************** 
 
 function R_move(prev_node, next_node)
 {
@@ -181,7 +128,6 @@ function F1_move(prev_node, next_node)
     return next_node;
 }
 
-let fl = 1;
 
 async function func(position, sol, index)
 {
@@ -193,13 +139,10 @@ async function func(position, sol, index)
 
     if (temp_pos.join('') === "YYYYOOBBRRGGOBBRRGWWW")
     {
-        if (fl)
-        {
-            let outt = `\t\"depth\": ${index},\n\t\"sols\": [\n\t\t\"`;
-            
-            out = out.concat(outt);
-            fl = 0;
-        }
+        let outt = `\t\"depth\": ${index},\n\t\"sol\": "`;
+        
+        out = out.concat(outt);
+        
         if (index == 0)
         {
             out = out.concat("\n\n");
@@ -224,55 +167,54 @@ async function func(position, sol, index)
     
     
     let line_split = await findByState(temp_pos.join(''))
-    let y = 0;
-    while (y<6)
+    // let y = 0;
+    let rand = Math.floor(Math.random() * 6);
+    while(!line_split[rand])
     {
-        let move = await line_split[y];
-        rindex++;
-        if (move === true)
-        {
-            
-            let k = ref[rindex];
-            new_sol.push(k);
-            let new_pos = [];
-            
-            switch (k)
-            {
-            case 'R':
-                new_pos = R_move(temp_pos, new_pos).slice();
-                let out1= await func(new_pos, new_sol, index + 1);
-                out = out.concat(out1)
-                break;
-            case 'r':
-                new_pos= R1_move(temp_pos, new_pos).slice();
-                let out2= await func(new_pos, new_sol, index + 1);
-                out = out.concat(out2)
-                break;
-            case 'U':
-                new_pos= U_move(temp_pos, new_pos).slice();
-                let out3= await func(new_pos, new_sol, index + 1);
-                out = out.concat(out3)
-                break;
-            case 'u':
-                new_pos= U1_move(temp_pos, new_pos).slice();
-                let out4= await func(new_pos, new_sol, index + 1);
-                out = out.concat(out4)
-                break;
-            case 'F':
-                new_pos= F_move(temp_pos, new_pos).slice();
-                let out5= await func(new_pos, new_sol, index + 1);
-                out = out.concat(out5)
-                break;
-            case 'f':
-                new_pos= F1_move(temp_pos, new_pos).slice();
-                let out6= await func(new_pos, new_sol, index + 1);
-                out = out.concat(out6)
-                break;
-            }
-            new_sol.pop();
-        }
-        y++;
+        rand = Math.floor(Math.random() * 6);
     }
+    let move = await line_split[rand];
+    rindex = rand;
+
+    let k = ref[rindex];
+    new_sol.push(k);
+    let new_pos = [];
+        
+    switch (k)
+    {
+    case 'R':
+        new_pos = R_move(temp_pos, new_pos).slice();
+        let out1= await func(new_pos, new_sol, index + 1);
+        out = out.concat(out1)
+        break;
+    case 'r':
+        new_pos= R1_move(temp_pos, new_pos).slice();
+        let out2= await func(new_pos, new_sol, index + 1);
+        out = out.concat(out2)
+        break;
+    case 'U':
+        new_pos= U_move(temp_pos, new_pos).slice();
+        let out3= await func(new_pos, new_sol, index + 1);
+        out = out.concat(out3)
+        break;
+    case 'u':
+        new_pos= U1_move(temp_pos, new_pos).slice();
+        let out4= await func(new_pos, new_sol, index + 1);
+        out = out.concat(out4)
+        break;
+    case 'F':
+        new_pos= F_move(temp_pos, new_pos).slice();
+        let out5= await func(new_pos, new_sol, index + 1);
+        out = out.concat(out5)
+        break;
+    case 'f':
+        new_pos= F1_move(temp_pos, new_pos).slice();
+        let out6= await func(new_pos, new_sol, index + 1);
+        out = out.concat(out6)
+        break;
+    }
+    new_sol.pop();
+    
     // console.log("inside")
     return out
 }
@@ -345,7 +287,7 @@ function setStndString(org_state, stn_state)
 
 
 
-async function findSols(ip)
+async function findOne(ip)
 {
     let output = '';
     fl=1;
@@ -369,10 +311,10 @@ async function findSols(ip)
 
     let len = output.length;
     output = output.substring(0, len-5);
-    output = output.concat(`\n\t]\n}`);
+    output = output.concat(`\n}`);
     return output;
 
 }
 
 
-module.exports = {isValid, findSols};
+module.exports = {findOne};

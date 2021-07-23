@@ -1,9 +1,4 @@
-const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-dotenv.config();
-
-const MONGODB_URI = process.env.MONGODB_URI;
-
 
 const stateSchema = new mongoose.Schema({
   "state": {
