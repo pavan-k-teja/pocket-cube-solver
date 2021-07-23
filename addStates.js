@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
-dotenv.config({path: './config.env'});
+dotenv.config();
 
 const MONGODB_URI="mongodb://localhost:27017/depth_states";
 const PORT = process.env.PORT || 5001;
