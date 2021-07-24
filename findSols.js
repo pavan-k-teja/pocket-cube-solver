@@ -362,7 +362,7 @@ async function findSols(ip)
     setStndString(org_state, state_temp);
     state = state_temp.slice();
 
-    output = output.concat(`{\n\t\"state\": \"${org_state.join('')}\",\n`);
+    output = output.concat(`{\n\t\"position\": \"${org_state.join('')}\",\n`);
 
     let out= await func(state, sol, 0);
     output = output.concat(out)

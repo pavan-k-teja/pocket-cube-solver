@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const express = require("express");
+var favicon = require('serve-favicon');
 
 const {isValid, findSols} = require("./findSols");
 const {findOne} = require("./findOne");
@@ -8,6 +9,7 @@ const {findOne} = require("./findOne");
 const app = express();
 dotenv.config();
 
+app.use(favicon(__dirname + '/assets/pocket-cube.png'));
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5001;
@@ -32,7 +34,7 @@ app.get("/:ip/all", async (req, res) => {
   const state = ip.toUpperCase();
 
   if (state.length != 24 || !isValid(state))
-    res.json({"state": state, "depth": -1, "sols": [] });
+    res.status(404).json({"position": state, "depth": -1, "sols": [] });
   else {
 
     let sols = await findSols(state);
@@ -46,7 +48,7 @@ app.get("/:ip/random", async (req, res) => {
   const state = ip.toUpperCase();
 
   if (state.length != 24 || !isValid(state))
-    res.json({"state": state, "depth": -1, "sol": null });
+    res.json({"position": state, "depth": -1, "sol": null });
   else {
 
     let sols = await findOne(state);
@@ -57,7 +59,7 @@ app.get("/:ip/random", async (req, res) => {
 
 app.get('/:ip*', (req, res) => {
   const { ip } = req.params;
-  res.redirect(`/${ip}/all`);
+  res.redirect(`/${ip}/random`);
 });
 
 
