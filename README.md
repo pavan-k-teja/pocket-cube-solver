@@ -2,13 +2,13 @@
 
 
 <br />
+<!-- ![](./assets/pocket-cube.png) -->
 <p align="center">
   <a href="https://pocket-cube-solution-finder.herokuapp.com/" target="_blank">
-    <img src="./assets/pocket-cube.png" style=" display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 200px; ">
+    <img src="./assets/pocket-cube.png" width="200px">
+    
   </a>
+  
 
   <h2 align="center">Pocket Cube Solution Finder</h2>
 
@@ -61,10 +61,7 @@
 
 
 # Example
-  <img src="./assets/cube-example.svg" style=" display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 400px">
+  <img src="./assets/cube-example.svg" width="400px">
 
   ## The position string of the cube is:
   
@@ -113,9 +110,9 @@
   *  **Content :** 
       ```json
       {
-        "position": String,
-        "depth": Integer, 
-        "sols": Array(String)
+        "position": "String",
+        "depth": "Integer", 
+        "sols": "Array(String)"
       }
       ```
       where,
@@ -149,7 +146,7 @@
   *  **Content :** 
       ```json
       {
-        "position": String,
+        "position": "String",
         "depth": -1, 
         "sols": []
       }
@@ -190,9 +187,9 @@
   *  **Content :** 
       ```json
       {
-        "position": String,
-        "depth": Integer, 
-        "sol": String
+        "position": "String",
+        "depth": "Integer", 
+        "sol": "String"
       }
       ```
       where,
@@ -216,7 +213,7 @@
   *  **Content :** 
       ```json
       {
-        "position": String,
+        "position": "String",
         "depth": -1, 
         "sol": null
       }
