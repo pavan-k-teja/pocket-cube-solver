@@ -5,7 +5,7 @@
 <!-- ![](./assets/pocket-cube.png) -->
 <p align="center">
   <a href="https://pocket-cube-solution-finder.herokuapp.com/" target="_blank">
-    <img src="./assets/pocket-cube.png" width="200px">
+    <img src="public/assets/pocket-cube.png" width="200px">
     
   </a>
   

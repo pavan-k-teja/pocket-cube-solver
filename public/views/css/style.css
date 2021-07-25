@@ -343,6 +343,18 @@ body.one-content-column-version .content thead {
     color: #4bbed3;
 }
 
+img.getPos {
+    padding-left: 70px;
+    width: 40vw;
+    max-width: 500px;
+}
+img.getPos2 {
+    padding-left: 70px; 
+    width: 40vw; 
+    max-width: 500px; 
+    min-width: 346px;
+}
+
 /* RESPONSIVE
 ----------------------------------------------------------------------------------------*/
 
@@ -363,6 +375,7 @@ body.one-content-column-version .content thead {
     .content pre code {
         margin-top: 0;
     }
+    
 }
 
 @media only screen and (max-width:680px){
@@ -378,6 +391,31 @@ body.one-content-column-version .content thead {
     }
     img.getPos {
         width: 500px;
+    }
+
+    .linkgit {
+        display: none;
+    }
+    .content-logo{
+        padding-left: 0%;
+    }
+    .content-logo>img {
+        display:none;
+    }
+    .content-logo>span {
+        margin: 32px 38px 32px 20px;
+    }
+    img.getPos {
+        display: block;
+        margin: auto auto;
+        width: 70vw;
+        padding: 0px;
+    }
+    img.getPos2 {
+        display: block;
+        margin: auto auto;
+        width: 70vw;
+        padding: 0px;
     }
 }
 
