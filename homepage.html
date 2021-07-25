@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>API - Documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="ticlekiwi">
+
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/views/css/hightlightjs-dark.css">
+    <link rel="icon" href="/assets/pocket-cube.png" type="image/gif" sizes="16x16">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500|Source+Code+Pro:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="views/css/style.css" media="all">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+<body class="one-content-column-version">
+    <div class="left-menu">
+        <div class="content-logo">
+            <img alt="Pocket Cube" title="Pocket Cube" src="/assets/pocket-cube.png" height="140" style="align-content: center; margin: 32px 50px; position: absolute; opacity: 0.2;"/>
+            <span>POCKET CUBE SOLUTION FINDER API DOCUMENTATION</span>
+            <!-- <h4 id="get-started" style="font-size: 50px; text-align: center; color: #50BFE6;" >
+                POCKET CUBE SOLUTION FINDER
+            </h4>  -->
+        </div>
+        <div class="content-menu">
+            <ul>
+                <li class="scroll-to-link active" data-target="get-started">
+                    <a>Get Started</a>
+                </li>
+                <li class="scroll-to-link" data-target="get-all-optimal-solutions">
+                    <a>Get all optimal solutions</a>
+                </li>
+                <li class="scroll-to-link" data-target="get-random">
+                    <a>Get Random Solution</a>
+                </li>
+                <li class="scroll-to-link" data-target="errors">
+                    <a>Status Codes</a>
+                </li>
+            </ul>
+        </div>
+
+        <p class="linkgit"
+        style=" 
+        position: absolute;
+        vertical-align: bottom;
+        padding: 50px 100px 25px;
+        bottom: 0;">
+
+            <a href="https://github.com/pavan-k-teja/pocket-cube-solution-finder" target="_blank">Docs Github</a>
+
+        </p>
+    </div>
+
+
+    <div class="content-page">
+        <div class="content">
+            <!-- <h1 id="get-started" style="font-size: 50px; text-align: center; color: #50BFE6;" >
+                POCKET CUBE SOLUTION FINDER
+            </h1> -->
+            <div class="overflow-hidden content-section" id="content-get-started">
+
+                
+                <h1 id="get-started" style="font-size: 30px;">Get started</h1>
+
+                <p>
+                    The Pocket Cube Solution Finder API provides programmatic access to list of all optimal solutions (
+                    <a href="https://www.speedsolving.com/wiki/index.php/Metric#HTM" target="_blank"> QTM not HTM </a> )
+                    or get a random optimal solution for a given position string of Pocket Cube.
+                </p>
+                <p>
+                    Base URL : <a href="https://pocket-cube-solution-finder.herokuapp.com/" target="_blank">
+                        https://pocket-cube-solution-finder.herokuapp.com/ </a>
+                    <br><br>
+                </p>
+
+                <h1 style="font-size: x-large; color: rgb(77, 217, 252);">How to get position string of a Pocket Cube
+                    state :</h1>
+                <code>
+                <ul class="getPos" style="color: white;">
+                    <li class="getPos">Hold the pocket cube and view the front face...</li>
+                    <li class="getPos">'F' denotes the face in front of you</li>
+                    <li class="getPos">'R' denotes the face to right of 'F'</li>
+                    <li class="getPos">'L' denotes the face to left of 'F'</li>
+                    <li class="getPos">'U' denotes the face on top of cube</li>
+                    <li class="getPos">'D' denotes the bottom face of the cube</li>
+                    <li class="getPos">'B' denotes the face opposite to 'F'</li>
+                </ul>
+            </code>
+                <img src="/assets/cube-positions.png" class="getPos"
+                    style="padding-left: 70px; width: 40vw; max-width: 500px;" />
+                <code>
+                <ul class="getPos" style="color: white;">
+                    <li class="getPos">Now record the colors in the same order as the numbers shown above.</li>
+                    <li class="getPos">And now you got a 24-character position string.</li>
+                </ul>
+            </code>
+                <h1 style="padding-top: 20px; font-weight: 600; font-size: larger; color: rgb(77, 217, 252);">Example :
+                </h1>
+
+                <img src="/assets/cube-example.svg" class="getPos"
+                    style="padding-left: 70px; width: 40vw; max-width: 500px; min-width: 346px;" />
+                <h1 style="padding-top: 20px; font-weight: 400; font-size: larger; color: #bcbebe">The position string
+                    of the cube is: </h1>
+                <h1 style="padding-top: 20px; font-weight: 700; font-size: larger; color: #73a0a0"> YWYB ORGR YBOG WWRO
+                    YBRO GBGW (without spaces)</h1>
+                <br><br>
+                <h1 style="font-size: x-large; color: rgb(77, 217, 252);">The Solution string</h1>
+                <br>
+
+                <p>
+                    The api generates a list of solutions array, where each solution is a string of atmost 14-moves.
+                    These are optimal solutions of the given position string ( <a
+                        href="https://www.speedsolving.com/wiki/index.php/Metric#HTM" target="_blank"> QTM not HTM </a>
+                    ).
+                    <br><br>
+                    List of possible moves:
+                    <br>
+                    R, R', U, U', F, F' ( <a href="https://www.speedsolving.com/wiki/index.php/Metric#HTM"
+                        target="_blank"> Learn about cube moves</a> ) <br><br>
+                    Apply the moves of any one solution on the F face of the cube to solve it.
+                </p>
+
+            </div>
+
+            <div class="overflow-hidden content-section" id="content-get-all-optimal-solutions">
+                <h2 id="get-all-optimal-solutions" style="font-size: 30px;">get all optimal solutions</h2>
+                <p>
+                    To get all solutions you need to make a GET call to the following url :<br>
+                    <code class="highlighted">${baseURL}/:position/all</code>
+                </p>
+                <h3 style="font-size: 20px">QUERY PARAMETERS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>position</td>
+                            <td>String</td>
+                            <td>Position String of a given Pocket Cube</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Thats it, there is only one query parameter.</p>
+
+                <h3 style="font-size: 20px">Success Response :</h3>
+
+
+                <p>
+                    Code : 200
+                    <br>
+                    Content :
+
+                    <code>
+                        {
+                            "position": "String",
+                            "depth": "Integer", 
+                            "sols": "Array(String)"
+                        }
+                    </code>
+                    <br>
+
+                </p>
+
+                <h3 style="font-size: 20px">Error Response :</h3>
+
+
+                <p>
+                    Code : 404
+                    <br>
+                    Content :
+
+                    <code>
+                        {
+                            "position": "String",
+                            "depth": -1, 
+                            "sols": []
+                        }
+                    </code>
+                    <br>
+
+                    <br>
+                    <code>
+                        <span >where,</span><br>
+                        <span style="margin-left: 3rem;"><span style="font-weight: 700;">position</span> stores the parameter inputted,</span><br>
+                            
+                        <span style="margin-left: 3rem;"><span style="font-weight: 700;">depth</span> contains the number of moves required to solve the given position,</span><br>
+                        <span style="margin-left: 3rem;"><span style="font-weight: 700;">sols</span> contains the list of all optimal solutions which solves the given position.</span>
+                        
+                    </code>
+
+
+                </p>
+
+            </div>
+
+            <div class="overflow-hidden content-section" id="content-get-random">
+                <h2 id="get-random" style="font-size: 30px;">get a random solution</h2>
+                <p>
+                    To get a random optimal solution, you need to make a GET call to the following url :<br>
+                    <code class="highlighted">${baseURL}/:position/random</code>
+                </p>
+                <h3 style="font-size: 20px">QUERY PARAMETERS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>position</td>
+                            <td>String</td>
+                            <td>Position String of a given Pocket Cube</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Thats it, there is only one query parameter.</p>
+
+                <h3 style="font-size: 20px">Success Response :</h3>
+
+
+                <p>
+                    Code : 200
+                    <br>
+                    Content :
+
+                    <code>
+                        {
+                            "position": "String",
+                            "depth": "Integer", 
+                            "sol": "Array(String)"
+                        }
+                    </code>
+                    <br>
+
+                </p>
+
+                <h3 style="font-size: 20px">Error Response :</h3>
+
+
+                <p>
+                    Code : 404
+                    <br>
+                    Content :
+
+                    <code>
+                        {
+                            "position": "String",
+                            "depth": -1, 
+                            "sol": null
+                        }
+                    </code>
+                    <br>
+
+                    <br>
+                    <code>
+                        <span >where,</span><br>
+                        <span style="margin-left: 3rem;"><span style="font-weight: 700;">position</span> stores the parameter inputted,</span><br>
+                            
+                        <span style="margin-left: 3rem;"><span style="font-weight: 700;">depth</span> contains the number of moves required to solve the given position,</span><br>
+                        <span style="margin-left: 3rem;"><span style="font-weight: 700;">sol</span> contains the a random optimal solution which solves the given position.</span>
+                        
+                    </code>
+
+
+                </p>
+
+            </div>
+
+
+            <div class="overflow-hidden content-section" id="content-errors">
+                <h2 id="errors" style="font-size: 30px;">STATUS CODES</h2>
+                <p>
+                    This API uses the following status codes:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error Code</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>404</td>
+                            <td>
+                                Some parameters are missing. This error appears when you don't pass every mandatory
+                                parameters or pass incorrect parameters.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>302</td>
+                            <td>
+                                Incorrect request. This error appears if you pass the request incorrectly but instead of
+                                throwing error, sends a redirect request to nearest valid accurate request.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>200</td>
+                            <td>
+                                The requested url is correctly formatted and the response will contain an entity
+                                containing the result of the action.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Github Corner Ribbon - to remove (Ribbon created with : http://tholman.com/github-corners/ )-->
+    <a href="https://github.com/pavan-k-teja/pocket-cube-solution-finder" target="_blank" class="github-corner"
+        aria-label="View source on Github" title="View source on Github"><svg width="100" height="100"
+            viewBox="0 0 250 250"
+            style="z-index:99999; fill:#70B7FD; color:#333; position: fixed; top: 0; border: 0; right: 0;"
+            aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path
+                d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+                fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path
+                d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                fill="currentColor" class="octo-body"></path>
+        </svg></a>
+    <style>
+        .github-corner:hover .octo-arm {
+            animation: octocat-wave 560ms ease-in-out
+        }
+
+        @keyframes octocat-wave {
+
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+
+            20%,
+            60% {
+                transform: rotate(-25deg)
+            }
+
+            40%,
+            80% {
+                transform: rotate(10deg)
+            }
+        }
+
+        @media (max-width:500px) {
+            .github-corner:hover .octo-arm {
+                animation: none
+            }
+
+            .github-corner .octo-arm {
+                animation: octocat-wave 560ms ease-in-out
+            }
+        }
+    </style>
+    <!-- END Github Corner Ribbon - to remove -->
+    <script src="views/js/script.js"></script>
+</body>
+
+</html>

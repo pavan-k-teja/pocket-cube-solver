@@ -9,7 +9,10 @@ const {findOne} = require("./findOne");
 const app = express();
 dotenv.config();
 
-app.use(favicon(__dirname + '/assets/pocket-cube.png'));
+
+app.use(express.json());
+app.use(express.static('public'));
+app.use(favicon(__dirname + '/public/assets/pocket-cube.png'));
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5001;
@@ -23,10 +26,9 @@ mongoose.connect(MONGODB_URI, {
   .then(() => console.log("success"))
   .catch((err) => console.log(err))
 
-app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.sendFile('views/homepage.html', {root: __dirname })
+  res.sendFile(__dirname + '/homepage.html');
 });
 
 app.get("/:ip/all", async (req, res) => {
