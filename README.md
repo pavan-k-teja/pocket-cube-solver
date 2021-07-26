@@ -15,7 +15,7 @@
   <p align="center">
     The api that produces list of all optimal solutions for a given position of Pocket Cube
   <br>
-    <a href="https://beneficent-sd.herokuapp.com/"><strong>View Demo »</strong></a>
+    <a href="https://pocket-cube-solution-finder.herokuapp.com/"><strong>View Demo »</strong></a>
   </p>
 </p>
 
@@ -48,7 +48,7 @@
     * ### 'U' denotes the face on top of cube
     * ### 'D' denotes the bottom face of the cube
     * ### 'B' denotes the face opposite to 'F'
-<img src="./assets/cube-positions.png" style=" display: block;
+<img src="./public/assets/cube-positions.png" style=" display: block;
         margin-left: auto;
         margin-right: auto;
         width: 400px "/>
@@ -61,7 +61,7 @@
 
 
 # Example
-  <img src="./assets/cube-example.svg" width="400px">
+  <img src="./public/assets/cube-example.svg" width="400px">
 
   ## The position string of the cube is:
   
