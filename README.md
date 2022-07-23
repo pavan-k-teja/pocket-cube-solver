@@ -233,7 +233,7 @@
 ### Clone the repo...
 
 ```shell
-git clone https://github.com/pavan-k-teja/pocket-cube-solution-finder.git
+git clone https://github.com/pavan-k-teja/pocket-cube-solver.git
 ```
 ### Then visit the downloaded repository and install dependencies:
 
@@ -262,4 +262,4 @@ npm run dev
 
 # ✏ Contributing
 
-Feel free to dive in! [Open an issue](https://github.com/pavan-k-teja/pocket-cube-solution-finder/issues/new) or submit PRs.
+Feel free to dive in! [Open an issue](https://github.com/pavan-k-teja/pocket-cube-solver/issues/new) or submit PRs.
