@@ -48,7 +48,7 @@
     * ### 'U' denotes the face on top of cube
     * ### 'D' denotes the bottom face of the cube
     * ### 'B' denotes the face opposite to 'F'
-<img src="./public/assets/cube-positions.png" style=" display: block;
+<img src="public/assets/cube-positions.png" style=" display: block;
         margin-left: auto;
         margin-right: auto;
         width: 400px "/>
@@ -61,7 +61,7 @@
 
 
 # Example
-  <img src="./public/assets/cube-example.svg" width="400px">
+  <img src="public/assets/cube-example.svg" width="400px">
 
   ## The position string of the cube is:
   
@@ -238,7 +238,7 @@ git clone https://github.com/pavan-k-teja/pocket-cube-solver.git
 ### Then visit the downloaded repository and install dependencies:
 
 ```shell
-cd pocket-cube-solution-finder
+cd pocket-cube-solver
 
 npm i
 ```
