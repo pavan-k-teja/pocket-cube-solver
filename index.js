@@ -11,7 +11,7 @@ dotenv.config();
 
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname + "/public/"));
 app.use(favicon(__dirname + '/public/assets/pocket-cube.png'));
 
 const MONGODB_URI = process.env.MONGODB_URI;

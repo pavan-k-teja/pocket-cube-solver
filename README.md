@@ -4,7 +4,7 @@
 <br />
 <!-- ![](./assets/pocket-cube.png) -->
 <p align="center">
-  <a href="https://pocket-cube-solver.herokuapp.com/" target="_blank">
+  <a href="https://pocket-cube-solver.vercel.app/" target="_blank">
     <img src="public/assets/pocket-cube.png" width="200px">
     
   </a>
@@ -15,14 +15,14 @@
   <p align="center">
     The api that produces list of all optimal solutions for a given position of Pocket Cube
   <br>
-    <a href="https://pocket-cube-solver.herokuapp.com/"><strong>View Demo »</strong></a>
+    <a href="https://pocket-cube-solver.vercel.app/"><strong>View Demo »</strong></a>
   </p>
 </p>
 
 
 # Pocket Cube Solution Finder 
 
-### Base URL : https://pocket-cube-solver.herokuapp.com/
+### Base URL : https://pocket-cube-solver.vercel.app/
 
 <!-- ### Rapid API:  -->
 
